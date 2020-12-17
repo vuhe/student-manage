@@ -1,8 +1,12 @@
 package top.vuhe.database.portal.controller
 
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping
 
-@RestController
+@Controller
 class DataController {
-
+    @RequestMapping("/index")
+    fun index(): String {
+        return "index"
+    }
 }

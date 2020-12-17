@@ -1,0 +1,20 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  #端口配置
+  port: 8080
+  servlet:
+    #映射项目路径
+    context-path: /
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true #是否检查模板位置是否存在
+    suffix: .html
+    encoding: utf-8 #模板编码
+    servlet:
+      content-type: text/html
+    mode: HTML
+    cache: false #禁用缓存，本地开发设置为false，避免修改后重启服务器

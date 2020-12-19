@@ -7,3 +7,41 @@ server:
   servlet:
     #映射项目路径
     context-path: /
+
+spring:
+  jackson:
+    serialization:
+      # jackson返回时间戳
+      write-dates-as-timestamps: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://api.zhuhe.site:3306/weibo?useSSL=false
+      username: zhuhe
+      password: ASDasd12
+
+#mybatis
+mybatis-plus:
+  #mapper文件
+  mapper-locations: classpath:mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: top.vuhe.database.entity.*
+  global-config:
+    # 数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      select-strategy: not_empty
+      insert-strategy: not_empty
+      update-strategy: not_empty
+
+  #mybatis原生配置
+  configuration:
+    #日志打印
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #驼峰下划线转换
+    map-underscore-to-camel-case: true
+    #不开启二级缓存
+    cache-enabled: false

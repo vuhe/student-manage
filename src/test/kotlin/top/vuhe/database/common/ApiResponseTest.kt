@@ -8,7 +8,7 @@ import top.vuhe.database.common.unit.JsonUnit
 class ApiResponseTest {
     @Test
     fun test1() {
-        val a = ApiResponse.ofSuccessWithDate("test", "3333");
+        val a = ApiResponse.ofSuccessWithDate("test", "3333")
         print(JsonUnit.toJson(a))
     }
 }

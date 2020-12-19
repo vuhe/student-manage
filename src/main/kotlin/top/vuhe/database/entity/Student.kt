@@ -15,7 +15,7 @@ import java.util.*
  * @property stuDepartment 系别
  */
 data class Student(
-    val id: Int,
+    val id: Int?,
     val stuNum: String,
     val stuName: String,
     val stuSex: Sex,

@@ -10,9 +10,9 @@ package top.vuhe.database.entity
  * @property retestScore 补考成绩
  */
 data class Score(
-    val id: Int,
+    val id: Int?,
     val stuNum: String,
     val cozNum: String,
     val score: Int,
-    val retestScore: Int
+    val retestScore: Int?
 )

@@ -8,7 +8,7 @@ package top.vuhe.database.entity
  * @property password 密码
  */
 data class User(
-    val id: Int,
+    val id: Int?,
     val name: String,
     val password: String
 )

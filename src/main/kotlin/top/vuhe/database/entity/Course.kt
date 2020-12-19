@@ -10,7 +10,7 @@ package top.vuhe.database.entity
  * @property cozPoint 学分
  */
 data class Course(
-    val id: Int,
+    val id: Int?,
     val cozNum: String,
     val cozName: String,
     val cozTime: Int,

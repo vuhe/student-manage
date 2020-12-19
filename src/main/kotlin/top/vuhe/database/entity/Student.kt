@@ -18,9 +18,13 @@ data class Student(
     val id: Int,
     val stuNum: String,
     val stuName: String,
-    val stuSex: String,
+    val stuSex: Sex,
     val stuBirthday: Date,
     val stuClass: String,
     val stuProfession: String,
     val stuDepartment: String
-)
+) {
+    enum class Sex(val value: String) {
+        male("男"), female("女")
+    }
+}

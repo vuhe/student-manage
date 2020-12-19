@@ -17,8 +17,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
-      url: jdbc:mysql://api.zhuhe.site:3306/weibo?useSSL=false
-      username: zhuhe
+      url: jdbc:mysql://127.0.0.1:3306/student_info?useSSL=false
+      username: root
       password: ASDasd12
 
 #mybatis

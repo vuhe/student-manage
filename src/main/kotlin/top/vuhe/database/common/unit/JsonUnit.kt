@@ -2,7 +2,8 @@ package top.vuhe.database.common.unit
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.*
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.IOException
 
@@ -13,24 +14,23 @@ import java.io.IOException
  * @author: vuhe
  */
 object JsonUnit {
-    private val log = LoggerFactory.getLogger(JsonUnit::class.java)
-    private val objMapper = jacksonObjectMapper()
+    val log: Logger = LoggerFactory.getLogger(JsonUnit::class.java)
+    val objMapper = jacksonObjectMapper()
 
     /**
      * Json 字符串转化成对象
      *
      * @param T 目前类
      * @param jsonString json 字符串
-     * @param clazz 类型实例
      * @return 目标类
      */
-    fun <T> toObj(jsonString: String, clazz: Class<T>): T? {
+    inline fun <reified T> toObj(jsonString: String): T? {
         objMapper.configure(
             DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,
             true
         )
         try {
-            return objMapper.readValue(jsonString, clazz)
+            return objMapper.readValue<T>(jsonString)
         } catch (e: IOException) {
             log.error("Json字符串转化成对象出错", e)
         }

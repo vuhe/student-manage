@@ -5,8 +5,4 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 class DataController {
-    @RequestMapping("/index")
-    fun index(): String {
-        return "index"
-    }
 }

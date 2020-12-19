@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     // springboot 启动框架
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     // json 默认解析包

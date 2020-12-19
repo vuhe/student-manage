@@ -37,7 +37,6 @@ class StudentController {
     @GetMapping("/search/{page}")
     fun searchStudentPage(@RequestBody stuNum: Int, @PathVariable page: Int)
             : ApiResponse<IPage<Student>> {
-        // TODO-处理搜索逻辑
         return ApiResponse.ofSuccessWithDate(
             "page",
             service.searchStudentPage(page, stuNum)
@@ -52,7 +51,7 @@ class StudentController {
      */
     @PostMapping("/add")
     fun addStudent(@RequestBody student: Student): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.addStudent(student)
     }
 
     /**
@@ -63,7 +62,7 @@ class StudentController {
      */
     @PutMapping("/modify")
     fun modifyStudent(@RequestBody student: Student): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.modifyStudent(student)
     }
 
     /**
@@ -74,6 +73,6 @@ class StudentController {
      */
     @DeleteMapping("/delete/{id}")
     fun deleteStudent(@PathVariable id: Int): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.deleteStudent(id)
     }
 }

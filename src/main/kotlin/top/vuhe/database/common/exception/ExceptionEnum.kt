@@ -8,5 +8,9 @@ package top.vuhe.database.common.exception
  */
 enum class ExceptionEnum(val code: Int, val message: String) {
     // 系统错误
-    UNKNOWN(500, "系统内部错误，请联系管理员")
+    UNKNOWN(500, "系统内部错误，请联系管理员"),
+    DATA_ERROR(501, "系统数据错误，请联系管理员"),
+
+    // 用户错误
+    INPUT_ERROR(410, "客户端发送数据错误")
 }

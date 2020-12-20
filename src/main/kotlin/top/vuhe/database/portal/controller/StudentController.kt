@@ -35,7 +35,7 @@ class StudentController {
      * @return 学生信息
      */
     @GetMapping("/search/{page}")
-    fun searchStudentPage(@RequestBody stuNum: Int, @PathVariable page: Int)
+    fun searchStudentPage(@RequestBody stuNum: String, @PathVariable page: Int)
             : ApiResponse<IPage<Student>> {
         return ApiResponse.ofSuccessWithDate(
             "page",

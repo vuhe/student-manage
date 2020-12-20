@@ -1,12 +1,18 @@
 package top.vuhe.database.portal.controller
 
+import com.baomidou.mybatisplus.core.metadata.IPage
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.vuhe.database.common.ApiResponse
 import top.vuhe.database.entity.Course
+import top.vuhe.database.portal.service.intf.CourseService
 
 @RestController
 @RequestMapping("/api/course")
 class CourseController {
+    @Autowired
+    private lateinit var service: CourseService
+
     /**
      * 默认获取列表
      *
@@ -14,25 +20,25 @@ class CourseController {
      * @return 课程信息
      */
     @GetMapping("/get/{page}")
-    fun getCoursePage(@PathVariable page: Int): ApiResponse<Course> {
+    fun getCoursePage(@PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(
             "page",
-            Course(1, " ", " ", 2, 2.0)
+            service.searchCoursePage(page, null)
         )
     }
 
     /**
      * 通过课程号搜索课程
      *
-     * @param id 课程好
+     * @param cozNum 课程好
      * @param page 页码
      * @return 课程信息
      */
     @GetMapping("/search/{page}")
-    fun searchCoursePage(@RequestBody id: Int, @PathVariable page: Int): ApiResponse<Course> {
+    fun searchCoursePage(@RequestBody cozNum: String, @PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(
             "page",
-            Course(1, " ", " ", 2, 2.0)
+            service.searchCoursePage(page, cozNum)
         )
     }
 
@@ -44,7 +50,7 @@ class CourseController {
      */
     @PostMapping("/add")
     fun addCourse(@RequestBody course: Course): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.addCourse(course)
     }
 
     /**
@@ -55,7 +61,7 @@ class CourseController {
      */
     @PutMapping("/modify")
     fun modifyCourse(@RequestBody course: Course): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.modifyCourse(course)
     }
 
     /**
@@ -66,6 +72,6 @@ class CourseController {
      */
     @DeleteMapping("/delete/{id}")
     fun deleteCourse(@PathVariable id: Int): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.deleteCourse(id)
     }
 }

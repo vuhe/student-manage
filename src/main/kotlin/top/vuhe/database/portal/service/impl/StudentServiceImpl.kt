@@ -14,7 +14,7 @@ import top.vuhe.database.portal.service.intf.StudentService
 @Service("StudentService")
 class StudentServiceImpl : ServiceImpl<StudentMapper, Student>(), StudentService {
 
-    override fun searchStudentPage(page: Int, stuNum: Int?): IPage<Student> {
+    override fun searchStudentPage(page: Int, stuNum: String?): IPage<Student> {
         val aPage = Page<Student>(page.toLong(), 10)
         val queryWrapper = QueryWrapper<Student>()
         if (stuNum != null) {
@@ -22,7 +22,7 @@ class StudentServiceImpl : ServiceImpl<StudentMapper, Student>(), StudentService
         }
         // 按 id 倒序排列
         queryWrapper.orderByDesc("id")
-        return baseMapper.selectPage(aPage, queryWrapper)
+        return page(aPage, queryWrapper)
     }
 
     override fun addStudent(student: Student): ApiResponse<*> {

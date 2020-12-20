@@ -14,7 +14,7 @@ interface StudentService : IService<Student> {
      * @param stuNum 学号
      * @return 查询结果
      */
-    fun searchStudentPage(page: Int, stuNum: Int?): IPage<Student>
+    fun searchStudentPage(page: Int, stuNum: String?): IPage<Student>
 
     /**
      * 添加学生

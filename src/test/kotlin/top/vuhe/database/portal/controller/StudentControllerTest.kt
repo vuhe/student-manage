@@ -15,7 +15,7 @@ class StudentControllerTest {
     @Test
     fun search() {
         println(JsonUnit.toJson(studentController.getStudentPage(1)))
-        println(JsonUnit.toJson(studentController.searchStudentPage(1,1)))
+        println(JsonUnit.toJson(studentController.searchStudentPage("1",1)))
     }
 
     @Test

@@ -1,12 +1,18 @@
 package top.vuhe.database.portal.controller
 
+import com.baomidou.mybatisplus.core.metadata.IPage
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.vuhe.database.common.ApiResponse
 import top.vuhe.database.entity.Score
+import top.vuhe.database.portal.service.intf.ScoreService
 
 @RestController
 @RequestMapping("/api/score")
 class ScoreController {
+    @Autowired
+    private lateinit var service: ScoreService
+
     /**
      * 默认获取列表
      *
@@ -14,26 +20,47 @@ class ScoreController {
      * @return 成绩信息
      */
     @GetMapping("/get/{page}")
-    fun getScorePage(@PathVariable page: Int): ApiResponse<Score> {
+    fun getScorePage(@PathVariable page: Int): ApiResponse<IPage<Score>> {
         // TODO-处理成绩返回值
         return ApiResponse.ofSuccessWithDate(
             "page",
-            Score(1, " ", " ", 30, 30)
+            service.searchScorePage(page, null, null)
         )
     }
 
     /**
-     * 按编号搜索成绩
+     * 按学号搜索成绩
      *
-     * @param id 编号
+     * @param stuNum 学号
      * @param page 页码
      * @return 成绩信息
      */
-    @GetMapping("/search/{page}")
-    fun searchScorePage(@RequestBody id: Int, @PathVariable page: Int): ApiResponse<Score> {
+    @GetMapping("/search_stu/{page}")
+    fun searchScorePageByStu(
+        @RequestBody stuNum: String,
+        @PathVariable page: Int
+    ): ApiResponse<IPage<Score>> {
         return ApiResponse.ofSuccessWithDate(
             "page",
-            Score(1, " ", " ", 30, 30)
+            service.searchScorePage(page, stuNum, null)
+        )
+    }
+
+    /**
+     * 按课程号搜索成绩
+     *
+     * @param cozNum 课程号
+     * @param page 页码
+     * @return 成绩信息
+     */
+    @GetMapping("/search_coz/{page}")
+    fun searchScorePagByCoz(
+        @RequestBody cozNum: String,
+        @PathVariable page: Int
+    ): ApiResponse<IPage<Score>> {
+        return ApiResponse.ofSuccessWithDate(
+            "page",
+            service.searchScorePage(page, null, cozNum)
         )
     }
 
@@ -45,7 +72,7 @@ class ScoreController {
      */
     @PostMapping("/add")
     fun addScore(@RequestBody score: Score): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.addScore(score)
     }
 
     /**
@@ -56,7 +83,7 @@ class ScoreController {
      */
     @PutMapping("/modify")
     fun modifyScore(@RequestBody score: Score): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.modifyScore(score)
     }
 
     /**
@@ -67,6 +94,6 @@ class ScoreController {
      */
     @DeleteMapping("/delete/{id}")
     fun deleteScore(@PathVariable id: Int): ApiResponse<*> {
-        return ApiResponse.ofSuccess()
+        return service.deleteScore(id)
     }
 }

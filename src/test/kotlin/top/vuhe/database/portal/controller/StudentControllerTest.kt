@@ -10,12 +10,12 @@ import java.util.*
 @SpringBootTest
 class StudentControllerTest {
     @Autowired
-    private lateinit var studentController: StudentController
+    private lateinit var controller: StudentController
 
     @Test
     fun search() {
-        println(JsonUnit.toJson(studentController.getStudentPage(1)))
-        println(JsonUnit.toJson(studentController.searchStudentPage("1",1)))
+        println(JsonUnit.toJson(controller.getStudentPage(1)))
+        println(JsonUnit.toJson(controller.searchStudentPage("1",1)))
     }
 
     @Test
@@ -24,7 +24,7 @@ class StudentControllerTest {
             "3",
             "3",
             Student.Sex.female, Date(), "3", "3", "3")
-        println(JsonUnit.toJson(studentController.addStudent(stu1)))
+        println(JsonUnit.toJson(controller.addStudent(stu1)))
     }
 
     @Test
@@ -33,11 +33,11 @@ class StudentControllerTest {
             "4",
             "4",
             Student.Sex.male, Date(), "4", "3", "3")
-        println(JsonUnit.toJson(studentController.modifyStudent(stu1)))
+        println(JsonUnit.toJson(controller.modifyStudent(stu1)))
     }
 
     @Test
     fun delete() {
-        println(JsonUnit.toJson(studentController.deleteStudent(3)))
+        println(JsonUnit.toJson(controller.deleteStudent(3)))
     }
 }

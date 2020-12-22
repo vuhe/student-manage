@@ -12,6 +12,7 @@ interface CourseService : IService<Course> {
      *
      * @param pageNum 页码
      * @param cozNum 课程号
+     * @return 查询结果
      */
     fun searchCoursePage(pageNum: Int, cozNum: String?): IPage<Course>
 

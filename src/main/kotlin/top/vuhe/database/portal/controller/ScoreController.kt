@@ -1,6 +1,7 @@
 package top.vuhe.database.portal.controller
 
 import com.baomidou.mybatisplus.core.metadata.IPage
+import org.apache.shiro.authz.annotation.RequiresRoles
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.vuhe.database.common.ApiResponse
@@ -19,6 +20,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
+    @RequiresRoles("Other", "Admin")
     @GetMapping("/get/{page}")
     fun getScorePage(@PathVariable page: Int): ApiResponse<IPage<Score>> {
         // TODO-处理成绩返回值
@@ -35,6 +37,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
+    @RequiresRoles("Other", "Admin")
     @GetMapping("/search_stu/{page}")
     fun searchScorePageByStu(
         @RequestBody stuNum: String,
@@ -53,6 +56,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
+    @RequiresRoles("Other", "Admin")
     @GetMapping("/search_coz/{page}")
     fun searchScorePagByCoz(
         @RequestBody cozNum: String,
@@ -70,6 +74,7 @@ class ScoreController {
      * @param score 成绩
      * @return 是否添加成功
      */
+    @RequiresRoles("Admin")
     @PostMapping("/add")
     fun addScore(@RequestBody score: Score): ApiResponse<*> {
         return service.addScore(score)
@@ -81,6 +86,7 @@ class ScoreController {
      * @param score 成绩
      * @return 是否修改成功
      */
+    @RequiresRoles("Admin")
     @PutMapping("/modify")
     fun modifyScore(@RequestBody score: Score): ApiResponse<*> {
         return service.modifyScore(score)
@@ -92,6 +98,7 @@ class ScoreController {
      * @param id 编号
      * @return 是否删除成功
      */
+    @RequiresRoles("Admin")
     @DeleteMapping("/delete/{id}")
     fun deleteScore(@PathVariable id: Int): ApiResponse<*> {
         return service.deleteScore(id)

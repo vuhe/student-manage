@@ -1,6 +1,7 @@
 package top.vuhe.database.portal.controller
 
 import com.baomidou.mybatisplus.core.metadata.IPage
+import org.apache.shiro.authz.annotation.RequiresRoles
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import top.vuhe.database.common.ApiResponse
@@ -19,6 +20,7 @@ class CourseController {
      * @param page 页码
      * @return 课程信息
      */
+    @RequiresRoles("Other", "Admin")
     @GetMapping("/get/{page}")
     fun getCoursePage(@PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(
@@ -34,6 +36,7 @@ class CourseController {
      * @param page 页码
      * @return 课程信息
      */
+    @RequiresRoles("Other", "Admin")
     @GetMapping("/search/{page}")
     fun searchCoursePage(@RequestBody cozNum: String, @PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(
@@ -48,6 +51,7 @@ class CourseController {
      * @param course 课程
      * @return 是否添加成功
      */
+    @RequiresRoles("Admin")
     @PostMapping("/add")
     fun addCourse(@RequestBody course: Course): ApiResponse<*> {
         return service.addCourse(course)
@@ -59,6 +63,7 @@ class CourseController {
      * @param course 课程
      * @return 是否修改成功
      */
+    @RequiresRoles("Admin")
     @PutMapping("/modify")
     fun modifyCourse(@RequestBody course: Course): ApiResponse<*> {
         return service.modifyCourse(course)
@@ -70,6 +75,7 @@ class CourseController {
      * @param id 编号
      * @return 是否删除成功
      */
+    @RequiresRoles("Admin")
     @DeleteMapping("/delete/{id}")
     fun deleteCourse(@PathVariable id: Int): ApiResponse<*> {
         return service.deleteCourse(id)

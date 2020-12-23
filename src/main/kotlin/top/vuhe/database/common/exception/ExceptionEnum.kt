@@ -13,5 +13,6 @@ enum class ExceptionEnum(val code: Int, val message: String) {
     TOKEN_GENERATOR_ERROR(502, "token 生成异常"),
 
     // 用户错误
-    INPUT_ERROR(410, "客户端发送数据错误")
+    INPUT_ERROR(410, "客户端发送数据错误"),
+    INVALID_TOKEN(411, "非法token")
 }

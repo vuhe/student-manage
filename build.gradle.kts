@@ -34,6 +34,9 @@ dependencies {
     implementation("com.alibaba:druid-spring-boot-starter:1.2.4")
     implementation("mysql:mysql-connector-java:8.0.22")
     implementation("org.springframework:spring-jdbc:5.3.2")
+
+    // 权限控制
+    implementation("org.apache.shiro:shiro-spring:1.7.0")
 }
 
 tasks.withType<KotlinCompile> {

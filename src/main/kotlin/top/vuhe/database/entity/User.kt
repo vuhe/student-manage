@@ -11,5 +11,10 @@ data class User(
     val id: Int?,
     val name: String,
     val password: String,
-    val token: String
-)
+    val token: String,
+    val role: Role
+) {
+    enum class Role {
+        Admin, Other
+    }
+}

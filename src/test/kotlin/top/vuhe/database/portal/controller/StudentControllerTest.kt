@@ -3,7 +3,7 @@ package top.vuhe.database.portal.controller
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import top.vuhe.database.common.unit.toJson
+import top.vuhe.database.common.util.toJson
 import top.vuhe.database.entity.Student
 import java.util.*
 

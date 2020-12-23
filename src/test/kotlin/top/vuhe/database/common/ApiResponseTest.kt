@@ -2,7 +2,7 @@ package top.vuhe.database.common
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import top.vuhe.database.common.unit.toJson
+import top.vuhe.database.common.util.toJson
 
 @SpringBootTest
 class ApiResponseTest {

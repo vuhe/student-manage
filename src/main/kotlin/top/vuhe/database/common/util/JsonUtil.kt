@@ -1,14 +1,7 @@
-package top.vuhe.database.common.unit
+package top.vuhe.database.common.util
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.*
-
-/**
- * Json 工具类
- * 依赖 jackson
- *
- * @author: vuhe
- */
 
 internal val objMapper = jacksonObjectMapper()
 

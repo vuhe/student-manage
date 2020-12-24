@@ -34,27 +34,26 @@ class StudentController {
     }
 
     /**
-     * 添加学生
+     * 获取一个学生
      *
-     * @param student 学生
-     * @return 是否添加成功
+     * @return 学生
      */
     @RequiresRoles("Admin")
-    @PostMapping("/add")
-    fun addStudent(@RequestBody student: Student): ApiResponse<*> {
-        return service.addStudent(student)
+    @GetMapping("/get")
+    fun getStudent(@RequestParam("id") id: Int): ApiResponse<Student> {
+        return ApiResponse.ofSuccessWithDate("student", service.getStudent(id))
     }
 
     /**
-     * 修改学生
+     * 添加/修改学生
      *
      * @param student 学生
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
     @RequiresRoles("Admin")
-    @PutMapping("/modify")
-    fun modifyStudent(@RequestBody student: Student): ApiResponse<*> {
-        return service.modifyStudent(student)
+    @PostMapping("/save")
+    fun addStudent(@RequestBody student: Student): ApiResponse<*> {
+        return service.saveStudent(student)
     }
 
     /**
@@ -64,8 +63,8 @@ class StudentController {
      * @return 是否删除成功
      */
     @RequiresRoles("Admin")
-    @DeleteMapping("/delete/{id}")
-    fun deleteStudent(@PathVariable id: Int): ApiResponse<*> {
+    @DeleteMapping("/delete")
+    fun deleteStudent(@RequestParam("id") id: Int): ApiResponse<*> {
         return service.deleteStudent(id)
     }
 }

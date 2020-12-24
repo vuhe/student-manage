@@ -10,6 +10,7 @@ server:
 
 spring:
   jackson:
+    time-zone: GMT+8
     serialization:
       # jackson返回时间戳
       write-dates-as-timestamps: true
@@ -20,7 +21,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
-      url: jdbc:mysql://127.0.0.1:3306/student_info?useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/student_info?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=CTT
       username: root
       password: ASDasd12
 

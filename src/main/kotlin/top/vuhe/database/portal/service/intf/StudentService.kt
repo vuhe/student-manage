@@ -17,20 +17,20 @@ interface StudentService : IService<Student> {
     fun searchStudentPage(page: Int, stuNum: String?): IPage<Student>
 
     /**
-     * 添加学生
+     * 按 id 获取一个学生
      *
-     * @param student 学生实体
-     * @return 是否添加成功
+     * @param id id
+     * @return 学生
      */
-    fun addStudent(student: Student): ApiResponse<*>
+    fun getStudent(id: Int): Student
 
     /**
-     * 修改学生
+     * 添加/修改学生
      *
      * @param student 学生实体
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
-    fun modifyStudent(student: Student): ApiResponse<*>
+    fun saveStudent(student: Student): ApiResponse<*>
 
     /**
      * 删除学生

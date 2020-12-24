@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import org.springframework.stereotype.Service
 import top.vuhe.database.common.ApiResponse
 import top.vuhe.database.common.exception.ExceptionEnum
+import top.vuhe.database.common.exception.SystemProcessingException
 import top.vuhe.database.entity.Student
 import top.vuhe.database.mapper.StudentMapper
 import top.vuhe.database.portal.service.intf.StudentService
@@ -25,25 +26,25 @@ class StudentServiceImpl : ServiceImpl<StudentMapper, Student>(), StudentService
         return page(aPage, queryWrapper)
     }
 
-    override fun addStudent(student: Student): ApiResponse<*> {
-        // id 由数据库设定
-        // 此处 id 置空
-        val ans = save(student.copy(id = null))
+    override fun getStudent(id: Int): Student {
+        return getById(id)
+            ?: throw SystemProcessingException(ExceptionEnum.INPUT_ERROR)
+    }
+
+    override fun saveStudent(student: Student): ApiResponse<*> {
+        val ans = if (student.id == 0) {
+            // id 由数据库设定
+            // 此处 id 置空
+            save(student.copy(id = null))
+        } else {
+            updateById(student)
+        }
+
         // 检验结果
         return if (ans) {
             ApiResponse.ofSuccess()
         } else {
             ApiResponse.ofExceptionEnum(ExceptionEnum.DATA_ERROR)
-        }
-    }
-
-    override fun modifyStudent(student: Student): ApiResponse<*> {
-        val ans = updateById(student)
-        // 检验结果
-        return if (ans) {
-            ApiResponse.ofSuccess()
-        } else {
-            ApiResponse.ofExceptionEnum(ExceptionEnum.INPUT_ERROR)
         }
     }
 

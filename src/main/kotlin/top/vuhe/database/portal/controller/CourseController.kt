@@ -15,22 +15,8 @@ class CourseController {
     private lateinit var service: CourseService
 
     /**
-     * 默认获取列表
-     *
-     * @param page 页码
-     * @return 课程信息
-     */
-    @RequiresRoles("Other")
-    @GetMapping("/get/{page}")
-    fun getCoursePage(@PathVariable page: Int): ApiResponse<IPage<Course>> {
-        return ApiResponse.ofSuccessWithDate(
-            "page",
-            service.searchCoursePage(page, null)
-        )
-    }
-
-    /**
      * 通过课程号搜索课程
+     * 默认为全获取
      *
      * @param cozNum 课程好
      * @param page 页码
@@ -38,10 +24,11 @@ class CourseController {
      */
     @RequiresRoles("Other")
     @GetMapping("/search/{page}")
-    fun searchCoursePage(@RequestBody cozNum: String, @PathVariable page: Int): ApiResponse<IPage<Course>> {
+    fun searchCoursePage(@RequestParam("num") cozNum: String, @PathVariable page: Int): ApiResponse<IPage<Course>> {
+        val searchCozNum = if (cozNum == "") null else cozNum
         return ApiResponse.ofSuccessWithDate(
             "page",
-            service.searchCoursePage(page, cozNum)
+            service.searchCoursePage(page, searchCozNum)
         )
     }
 

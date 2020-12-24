@@ -15,22 +15,6 @@ class ScoreController {
     private lateinit var service: ScoreService
 
     /**
-     * 默认获取列表
-     *
-     * @param page 页码
-     * @return 成绩信息
-     */
-    @RequiresRoles("Other")
-    @GetMapping("/get/{page}")
-    fun getScorePage(@PathVariable page: Int): ApiResponse<IPage<Score>> {
-        // TODO-处理成绩返回值
-        return ApiResponse.ofSuccessWithDate(
-            "page",
-            service.searchScorePage(page, null, null)
-        )
-    }
-
-    /**
      * 按学号搜索成绩
      *
      * @param stuNum 学号
@@ -40,12 +24,13 @@ class ScoreController {
     @RequiresRoles("Other")
     @GetMapping("/search_stu/{page}")
     fun searchScorePageByStu(
-        @RequestBody stuNum: String,
+        @RequestParam("num") stuNum: String,
         @PathVariable page: Int
     ): ApiResponse<IPage<Score>> {
+        val searchStdNum = if (stuNum == "") null else stuNum
         return ApiResponse.ofSuccessWithDate(
             "page",
-            service.searchScorePage(page, stuNum, null)
+            service.searchScorePage(page, searchStdNum, null)
         )
     }
 
@@ -59,12 +44,13 @@ class ScoreController {
     @RequiresRoles("Other")
     @GetMapping("/search_coz/{page}")
     fun searchScorePagByCoz(
-        @RequestBody cozNum: String,
+        @RequestParam("num") cozNum: String,
         @PathVariable page: Int
     ): ApiResponse<IPage<Score>> {
+        val searchCozNum = if (cozNum == "") null else cozNum
         return ApiResponse.ofSuccessWithDate(
             "page",
-            service.searchScorePage(page, null, cozNum)
+            service.searchScorePage(page, null, searchCozNum)
         )
     }
 

@@ -18,7 +18,7 @@ class StudentServiceImpl : ServiceImpl<StudentMapper, Student>(), StudentService
         val aPage = Page<Student>(page.toLong(), 10)
         val queryWrapper = QueryWrapper<Student>()
         if (stuNum != null) {
-            queryWrapper.eq("stu_num", stuNum)
+            queryWrapper.like("stu_num", stuNum)
         }
         // 按 id 倒序排列
         queryWrapper.orderByDesc("id")

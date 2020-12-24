@@ -21,10 +21,10 @@ class ScoreServiceImpl : ServiceImpl<ScoreMapper, Score>(), ScoreService {
         val page = Page<Score>(pageNum.toLong(), 10)
         val queryWrapper = QueryWrapper<Score>()
         if (stuNum != null) {
-            queryWrapper.eq("stu_num", stuNum)
+            queryWrapper.like("stu_num", stuNum)
         }
         if (cozNum != null) {
-            queryWrapper.eq("coz_num", cozNum)
+            queryWrapper.like("coz_num", cozNum)
         }
         // 按 id 倒序排列
         queryWrapper.orderByDesc("id")

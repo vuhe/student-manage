@@ -15,22 +15,8 @@ class StudentController {
     private lateinit var service: StudentService
 
     /**
-     * 默认获取列表
-     *
-     * @param page 页码
-     * @return 学生信息
-     */
-    @RequiresRoles("Other")
-    @GetMapping("/get/{page}")
-    fun getStudentPage(@PathVariable page: Int): ApiResponse<IPage<Student>> {
-        return ApiResponse.ofSuccessWithDate(
-            "page",
-            service.searchStudentPage(page, null)
-        )
-    }
-
-    /**
      * 按学号搜索学生
+     * 默认为全获取
      *
      * @param stuNum 学生id
      * @param page 页码
@@ -38,11 +24,12 @@ class StudentController {
      */
     @RequiresRoles("Other")
     @GetMapping("/search/{page}")
-    fun searchStudentPage(@RequestBody stuNum: String, @PathVariable page: Int)
+    fun searchStudentPage(@RequestParam("num") stuNum: String, @PathVariable page: Int)
             : ApiResponse<IPage<Student>> {
+        val searchStdNum = if (stuNum == "") null else stuNum
         return ApiResponse.ofSuccessWithDate(
             "page",
-            service.searchStudentPage(page, stuNum)
+            service.searchStudentPage(page, searchStdNum)
         )
     }
 

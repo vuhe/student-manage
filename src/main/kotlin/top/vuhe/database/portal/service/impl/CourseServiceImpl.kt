@@ -17,7 +17,7 @@ class CourseServiceImpl: ServiceImpl<CourseMapper, Course>(), CourseService {
         val page = Page<Course>(pageNum.toLong(), 10)
         val queryWrapper = QueryWrapper<Course>()
         if (cozNum != null) {
-            queryWrapper.eq("coz_num", cozNum)
+            queryWrapper.like("coz_num", cozNum)
         }
         // 按 id 倒序排列
         queryWrapper.orderByDesc("id")

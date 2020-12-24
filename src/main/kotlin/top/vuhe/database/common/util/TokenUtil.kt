@@ -1,5 +1,6 @@
 package top.vuhe.database.common.util
 
+import org.apache.shiro.crypto.hash.Sha256Hash
 import top.vuhe.database.common.exception.ExceptionEnum
 import top.vuhe.database.common.exception.SystemProcessingException
 import java.lang.Exception
@@ -8,8 +9,10 @@ import java.util.*
 
 private val hexCode = "0123456789abcdef".toCharArray()
 
-fun generateValue(): String? {
-    return generateValue(UUID.randomUUID().toString())
+fun sha256Hash(a: String, b: String): String = Sha256Hash(a, b).toHex()
+
+fun generateValue(): String {
+    return generateValue(UUID.randomUUID().toString()) ?: ""
 }
 
 private fun generateValue(param: String): String? {

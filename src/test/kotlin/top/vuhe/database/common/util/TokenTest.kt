@@ -8,6 +8,11 @@ class TokenTest {
     @Test
     fun test() {
         println(generateValue())
-        println(generateValue()?.length)
+        println(generateValue().length)
+    }
+
+    @Test
+    fun test2() {
+        println(sha256Hash("admin", "123456"))
     }
 }

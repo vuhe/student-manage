@@ -22,7 +22,7 @@ object OAuth2Filter : AuthenticatingFilter() {
         //获取请求token
         val token: String = getRequestToken(request as HttpServletRequest?) ?: ""
 
-        return if (StringUtils.hasLength(token)) {
+        return if (StringUtils.hasLength(token).not()) {
             null
         } else OAuth2Token(token)
 
@@ -37,9 +37,9 @@ object OAuth2Filter : AuthenticatingFilter() {
     override fun onAccessDenied(
         request: ServletRequest?, response: ServletResponse?
     ): Boolean {
-        //获取请求token，如果token不存在，直接返回401
+        //获取请求token，如果token不存在，直接返回411
         val token: String = getRequestToken(request as HttpServletRequest?) ?: ""
-        if (StringUtils.hasLength(token)) {
+        if (StringUtils.hasLength(token).not()) {
             val httpResponse = response as HttpServletResponse
             httpResponse.setHeader("Access-Control-Allow-Credentials", "true")
             httpResponse.setHeader("Access-Control-Allow-Origin", getOrigin())
@@ -83,7 +83,7 @@ object OAuth2Filter : AuthenticatingFilter() {
         var token = httpRequest?.getHeader("token")
 
         //如果header中不存在token，则从参数中获取token
-        if (StringUtils.hasLength(token)) {
+        if (StringUtils.hasLength(token).not()) {
             token = httpRequest?.getParameter("token")
         }
         return token

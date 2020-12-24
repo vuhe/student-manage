@@ -25,6 +25,6 @@ data class Student(
     val stuDepartment: String
 ) {
     enum class Sex(val value: String) {
-        male("男"), female("女")
+        Male("男"), Female("女")
     }
 }

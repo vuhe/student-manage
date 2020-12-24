@@ -23,7 +23,7 @@ class StudentControllerTest {
         val stu1 = Student(1,
             "3",
             "3",
-            Student.Sex.female, Date(), "3", "3", "3")
+            Student.Sex.Female, Date(), "3", "3", "3")
         println(toJson(controller.addStudent(stu1)))
     }
 
@@ -32,7 +32,7 @@ class StudentControllerTest {
         val stu1 = Student(3,
             "4",
             "4",
-            Student.Sex.male, Date(), "4", "3", "3")
+            Student.Sex.Male, Date(), "4", "3", "3")
         println(toJson(controller.modifyStudent(stu1)))
     }
 

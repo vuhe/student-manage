@@ -26,7 +26,11 @@ class OAuth2Realm: AuthorizingRealm() {
         val user = principals!!.primaryPrincipal as User
 
         //用户角色列表
-        val roleSet = setOf(user.role.toString())
+        val roleSet = if (user.role == User.Role.Admin) {
+            setOf(User.Role.Admin.toString(), User.Role.Other.toString())
+        } else {
+            setOf(User.Role.Other.toString())
+        }
 
         val info = SimpleAuthorizationInfo()
         info.roles = roleSet

@@ -20,7 +20,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
-    @RequiresRoles("Other", "Admin")
+    @RequiresRoles("Other")
     @GetMapping("/get/{page}")
     fun getScorePage(@PathVariable page: Int): ApiResponse<IPage<Score>> {
         // TODO-处理成绩返回值
@@ -37,7 +37,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
-    @RequiresRoles("Other", "Admin")
+    @RequiresRoles("Other")
     @GetMapping("/search_stu/{page}")
     fun searchScorePageByStu(
         @RequestBody stuNum: String,
@@ -56,7 +56,7 @@ class ScoreController {
      * @param page 页码
      * @return 成绩信息
      */
-    @RequiresRoles("Other", "Admin")
+    @RequiresRoles("Other")
     @GetMapping("/search_coz/{page}")
     fun searchScorePagByCoz(
         @RequestBody cozNum: String,

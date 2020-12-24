@@ -20,7 +20,7 @@ class CourseController {
      * @param page 页码
      * @return 课程信息
      */
-    @RequiresRoles("Other", "Admin")
+    @RequiresRoles("Other")
     @GetMapping("/get/{page}")
     fun getCoursePage(@PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(
@@ -36,7 +36,7 @@ class CourseController {
      * @param page 页码
      * @return 课程信息
      */
-    @RequiresRoles("Other", "Admin")
+    @RequiresRoles("Other")
     @GetMapping("/search/{page}")
     fun searchCoursePage(@RequestBody cozNum: String, @PathVariable page: Int): ApiResponse<IPage<Course>> {
         return ApiResponse.ofSuccessWithDate(

@@ -13,6 +13,9 @@ spring:
     serialization:
       # jackson返回时间戳
       write-dates-as-timestamps: true
+  mvc:
+    #restFul风格：当找不到页面时，正常抛出错误，不跳转页面
+    throw-exception-if-no-handler-found: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver

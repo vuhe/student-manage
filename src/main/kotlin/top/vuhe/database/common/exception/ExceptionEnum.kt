@@ -16,5 +16,6 @@ enum class ExceptionEnum(val code: Int, val message: String) {
     INPUT_ERROR(410, "客户端发送数据错误"),
     INVALID_TOKEN(411, "非法token"),
     INVALID_USER(412, "非法用户"),
-    PASSWORD_WRONG(413, "密码错误")
+    PASSWORD_WRONG(413, "密码错误"),
+    CONSTRAINT_ERROR(420, "违反数据表约束")
 }

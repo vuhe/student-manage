@@ -40,7 +40,7 @@ class CourseController {
      */
     @RequiresRoles("Admin")
     @GetMapping("/get")
-    fun getCourse(@RequestParam("id") id: Int):ApiResponse<Course> {
+    fun getCourse(@RequestParam("id") id: Int): ApiResponse<Course> {
         return ApiResponse.ofSuccessWithDate("course", service.getCourse(id))
     }
 

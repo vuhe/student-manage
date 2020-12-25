@@ -64,7 +64,7 @@ class ScoreController {
      */
     @RequiresRoles("Admin")
     @GetMapping("/get")
-    fun getScore(@RequestParam("id") id: Int) : ApiResponse<Score> {
+    fun getScore(@RequestParam("id") id: Int): ApiResponse<Score> {
         return ApiResponse.ofSuccessWithDate("score", service.getScore(id))
     }
 

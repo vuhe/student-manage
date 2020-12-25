@@ -1,6 +1,7 @@
 package top.vuhe.database.common.exception
 
 import org.slf4j.LoggerFactory
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import top.vuhe.database.common.ApiResponse
@@ -19,6 +20,11 @@ class SystemProcessingExceptionHandler {
     @ExceptionHandler(SystemProcessingException::class)
     fun handleMyException(e: SystemProcessingException): ApiResponse<*> {
         return ApiResponse.ofException(e)
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException::class)
+    fun handleConstraintException(e: DataIntegrityViolationException): ApiResponse<*> {
+        return ApiResponse.ofExceptionEnum(ExceptionEnum.CONSTRAINT_ERROR)
     }
 
     @ExceptionHandler(Exception::class)

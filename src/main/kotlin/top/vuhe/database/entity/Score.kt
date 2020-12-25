@@ -16,6 +16,7 @@ data class Score(
     val id: Int?,
     val stuNum: String,
     val cozNum: String,
+    val cozName: String,
     val score: Int,
     @field:TableField(
         insertStrategy = FieldStrategy.IGNORED,

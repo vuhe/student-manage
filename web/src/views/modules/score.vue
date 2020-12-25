@@ -32,14 +32,21 @@
         header-align="center"
         align="center"
         label="学生学号"
-        width="275">
+        width="180">
       </el-table-column>
       <el-table-column
         prop="cozNum"
         header-align="center"
         align="center"
         label="课程号"
-        width="275">
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="cozName"
+        header-align="center"
+        align="center"
+        label="课程名"
+        width="180">
       </el-table-column>
       <el-table-column
         prop="score"
@@ -136,6 +143,7 @@ export default {
             a.id = i.id
             a.stuNum = i.stuNum
             a.cozNum = i.cozNum
+            a.cozName = i.cozName
             a.score = i.score
             a.retestScore = i.retestScore == null ? '未补考' : i.retestScore
             // 添加

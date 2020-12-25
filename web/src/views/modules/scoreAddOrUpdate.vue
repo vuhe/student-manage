@@ -97,6 +97,7 @@ export default {
           'id': this.id,
           'stuNum': this.form.stuNum,
           'cozNum': this.form.cozNum,
+          'cozName': '',
           'score': this.form.score,
           'retestScore': this.haveRetestScore === true ? this.form.retestScore : null
         })

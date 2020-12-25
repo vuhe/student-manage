@@ -52,7 +52,7 @@ class StudentController {
      */
     @RequiresRoles("Admin")
     @PostMapping("/save")
-    fun addStudent(@RequestBody student: Student): ApiResponse<*> {
+    fun saveStudent(@RequestBody student: Student): ApiResponse<*> {
         return service.saveStudent(student)
     }
 

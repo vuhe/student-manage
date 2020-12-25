@@ -13,20 +13,13 @@ class CourseControllerTest {
 
     @Test
     fun search() {
-        println(toJson(controller.getCoursePage(1)))
         println(toJson(controller.searchCoursePage("test",1)))
     }
 
     @Test
-    fun add() {
+    fun save() {
         val course = Course(1, "test", "test", 3, 2.0)
-        println(toJson(controller.addCourse(course)))
-    }
-
-    @Test
-    fun modify() {
-        val course = Course(1, "test2", "test2", 4, 2.0)
-        println(toJson(controller.modifyCourse(course)))
+        println(toJson(controller.saveCourse(course)))
     }
 
     @Test

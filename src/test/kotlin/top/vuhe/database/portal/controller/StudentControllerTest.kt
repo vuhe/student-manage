@@ -14,7 +14,6 @@ class StudentControllerTest {
 
     @Test
     fun search() {
-        println(toJson(controller.getStudentPage(1)))
         println(toJson(controller.searchStudentPage("1",1)))
     }
 
@@ -24,16 +23,7 @@ class StudentControllerTest {
             "3",
             "3",
             Student.Sex.Female, Date(), "3", "3", "3")
-        println(toJson(controller.addStudent(stu1)))
-    }
-
-    @Test
-    fun modify() {
-        val stu1 = Student(3,
-            "4",
-            "4",
-            Student.Sex.Male, Date(), "4", "3", "3")
-        println(toJson(controller.modifyStudent(stu1)))
+        println(toJson(controller.saveStudent(stu1)))
     }
 
     @Test

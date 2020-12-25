@@ -13,19 +13,13 @@ class ScoreControllerTest {
 
     @Test
     fun search() {
-        println(toJson(controller.getScorePage(1)))
+        println(toJson(controller.searchScorePagByCoz("", 1)))
     }
 
     @Test
-    fun add() {
+    fun save() {
         val score = Score(1, "1", "test", 40, 60)
-        println(toJson(controller.addScore(score)))
-    }
-
-    @Test
-    fun modify() {
-        val score = Score(1, "1", "test", 40, 90)
-        println(toJson(controller.modifyScore(score)))
+        println(toJson(controller.saveScore(score)))
     }
 
     @Test

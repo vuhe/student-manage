@@ -76,7 +76,7 @@ class ScoreController {
      */
     @RequiresRoles("Admin")
     @PostMapping("/save")
-    fun addScore(@RequestBody score: Score): ApiResponse<*> {
+    fun saveScore(@RequestBody score: Score): ApiResponse<*> {
         return service.saveScore(score)
     }
 

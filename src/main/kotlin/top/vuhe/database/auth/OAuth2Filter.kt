@@ -65,8 +65,7 @@ object OAuth2Filter : AuthenticatingFilter() {
         httpResponse.setHeader("Access-Control-Allow-Origin", getOrigin())
         try {
             //处理登录失败的异常
-            val throwable = if (e.cause == null) e else e.cause!!
-            val r = ApiResponse.of(ExceptionEnum.INVALID_TOKEN.code, throwable.message ?: "")
+            val r = ApiResponse.ofExceptionEnum(ExceptionEnum.INVALID_TOKEN)
             val json = toJson(r)
             httpResponse.writer.print(json)
         } catch (e1: Exception) {

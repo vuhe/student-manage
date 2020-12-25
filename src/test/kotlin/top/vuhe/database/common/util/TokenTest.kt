@@ -15,4 +15,9 @@ class TokenTest {
     fun test2() {
         println(sha256Hash("admin", "123456"))
     }
+
+    @Test
+    fun test3() {
+        println(sha256Hash("201819914", "201819914"))
+    }
 }

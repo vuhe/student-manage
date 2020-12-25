@@ -16,6 +16,7 @@ class ScoreController {
 
     /**
      * 按学号搜索成绩
+     * 默认为全获取
      *
      * @param stuNum 学号
      * @param page 页码
@@ -36,6 +37,7 @@ class ScoreController {
 
     /**
      * 按课程号搜索成绩
+     * 默认为全获取
      *
      * @param cozNum 课程号
      * @param page 页码
@@ -55,27 +57,27 @@ class ScoreController {
     }
 
     /**
-     * 添加成绩
+     * 获取一条成绩
      *
-     * @param score 成绩
-     * @return 是否添加成功
+     * @param id id
+     * @return 成绩
      */
     @RequiresRoles("Admin")
-    @PostMapping("/add")
-    fun addScore(@RequestBody score: Score): ApiResponse<*> {
-        return service.addScore(score)
+    @GetMapping("/get")
+    fun getScore(@RequestParam("id") id: Int) : ApiResponse<Score> {
+        return ApiResponse.ofSuccessWithDate("score", service.getScore(id))
     }
 
     /**
-     * 修改成绩
+     * 添加/修改成绩
      *
      * @param score 成绩
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
     @RequiresRoles("Admin")
-    @PutMapping("/modify")
-    fun modifyScore(@RequestBody score: Score): ApiResponse<*> {
-        return service.modifyScore(score)
+    @PostMapping("/save")
+    fun addScore(@RequestBody score: Score): ApiResponse<*> {
+        return service.saveScore(score)
     }
 
     /**
@@ -85,8 +87,8 @@ class ScoreController {
      * @return 是否删除成功
      */
     @RequiresRoles("Admin")
-    @DeleteMapping("/delete/{id}")
-    fun deleteScore(@PathVariable id: Int): ApiResponse<*> {
+    @DeleteMapping("/delete")
+    fun deleteScore(@RequestParam("id") id: Int): ApiResponse<*> {
         return service.deleteScore(id)
     }
 }

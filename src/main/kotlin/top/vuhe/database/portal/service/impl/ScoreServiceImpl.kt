@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import org.springframework.stereotype.Service
 import top.vuhe.database.common.ApiResponse
 import top.vuhe.database.common.exception.ExceptionEnum
+import top.vuhe.database.common.exception.SystemProcessingException
 import top.vuhe.database.entity.Score
 import top.vuhe.database.mapper.ScoreMapper
 import top.vuhe.database.portal.service.intf.ScoreService
@@ -31,25 +32,25 @@ class ScoreServiceImpl : ServiceImpl<ScoreMapper, Score>(), ScoreService {
         return page(page, queryWrapper)
     }
 
-    override fun addScore(score: Score): ApiResponse<*> {
-        // id 由数据库设定
-        // 此处 id 置空
-        val ans = save(score.copy(id = null))
+    override fun getScore(id: Int): Score {
+        return getById(id)
+            ?: throw SystemProcessingException(ExceptionEnum.INPUT_ERROR)
+    }
+
+    override fun saveScore(score: Score): ApiResponse<*> {
+        val ans = if (score.id == 0) {
+            // id 由数据库设定
+            // 此处 id 置空
+            save(score.copy(id = null))
+        } else {
+            updateById(score)
+        }
+
         // 检验结果
         return if (ans) {
             ApiResponse.ofSuccess()
         } else {
             ApiResponse.ofExceptionEnum(ExceptionEnum.DATA_ERROR)
-        }
-    }
-
-    override fun modifyScore(score: Score): ApiResponse<*> {
-        val ans = updateById(score)
-        // 检验结果
-        return if (ans) {
-            ApiResponse.ofSuccess()
-        } else {
-            ApiResponse.ofExceptionEnum(ExceptionEnum.INPUT_ERROR)
         }
     }
 

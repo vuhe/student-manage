@@ -18,20 +18,21 @@ interface ScoreService : IService<Score> {
     fun searchScorePage(pageNum: Int, stuNum: String?, cozNum: String?): IPage<Score>
 
     /**
-     * 添加成绩
+     * 按 id 获取一条成绩
      *
-     * @param score 成绩实体
-     * @return 是否添加成功
+     * @param id id
+     * @return 成绩
      */
-    fun addScore(score: Score): ApiResponse<*>
+    fun getScore(id: Int): Score
 
     /**
-     * 修改成绩
+     * 添加/修改成绩
      *
      * @param score 成绩实体
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
-    fun modifyScore(score: Score): ApiResponse<*>
+    fun saveScore(score: Score): ApiResponse<*>
+
 
     /**
      * 删除成绩

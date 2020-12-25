@@ -33,27 +33,27 @@ class CourseController {
     }
 
     /**
-     * 添加课程
+     * 获取一条课程
      *
-     * @param course 课程
-     * @return 是否添加成功
+     * @param id id
+     * @return 课程
      */
     @RequiresRoles("Admin")
-    @PostMapping("/add")
-    fun addCourse(@RequestBody course: Course): ApiResponse<*> {
-        return service.addCourse(course)
+    @GetMapping("/get")
+    fun getCourse(@RequestParam("id") id: Int):ApiResponse<Course> {
+        return ApiResponse.ofSuccessWithDate("course", service.getCourse(id))
     }
 
     /**
-     * 修改课程
+     * 添加/修改课程
      *
      * @param course 课程
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
     @RequiresRoles("Admin")
-    @PutMapping("/modify")
-    fun modifyCourse(@RequestBody course: Course): ApiResponse<*> {
-        return service.modifyCourse(course)
+    @PostMapping("/save")
+    fun addCourse(@RequestBody course: Course): ApiResponse<*> {
+        return service.saveCourse(course)
     }
 
     /**
@@ -63,8 +63,8 @@ class CourseController {
      * @return 是否删除成功
      */
     @RequiresRoles("Admin")
-    @DeleteMapping("/delete/{id}")
-    fun deleteCourse(@PathVariable id: Int): ApiResponse<*> {
+    @DeleteMapping("/delete")
+    fun deleteCourse(@RequestParam("id") id: Int): ApiResponse<*> {
         return service.deleteCourse(id)
     }
 }

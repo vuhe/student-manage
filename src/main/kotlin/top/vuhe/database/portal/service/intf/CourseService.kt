@@ -17,20 +17,20 @@ interface CourseService : IService<Course> {
     fun searchCoursePage(pageNum: Int, cozNum: String?): IPage<Course>
 
     /**
-     * 添加课程
+     * 按 id 获取课程
      *
-     * @param course 课程实体
-     * @return 是否添加成功
+     * @param id id
+     * @return 课程
      */
-    fun addCourse(course: Course): ApiResponse<*>
+    fun getCourse(id: Int): Course
 
     /**
-     * 修改课程
+     * 添加/修改课程
      *
      * @param course 课程实体
-     * @return 是否修改成功
+     * @return 是否添加/修改成功
      */
-    fun modifyCourse(course: Course): ApiResponse<*>
+    fun saveCourse(course: Course): ApiResponse<*>
 
     /**
      * 删除课程

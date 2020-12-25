@@ -1,5 +1,8 @@
 package top.vuhe.database.entity
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy
+import com.baomidou.mybatisplus.annotation.TableField
+
 /**
  * 用户类别
  *
@@ -11,6 +14,10 @@ data class User(
     val id: Int?,
     val name: String,
     val password: String,
+    @field:TableField(
+        insertStrategy = FieldStrategy.IGNORED,
+        updateStrategy = FieldStrategy.IGNORED
+    )
     val token: String?,
     val role: Role
 ) {

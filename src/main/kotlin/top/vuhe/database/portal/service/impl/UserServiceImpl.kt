@@ -60,7 +60,7 @@ class UserServiceImpl : ServiceImpl<UserMapper, User>(), UserService {
 
     override fun logoutByUser(): ApiResponse<*> {
         val user = SecurityUtils.getSubject().principal as User
-        val logoutUser = user.copy(token = "null")
+        val logoutUser = user.copy(token = null)
 
         // 更新数据库的 token
         if (updateById(logoutUser).not()) {

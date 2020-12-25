@@ -1,5 +1,8 @@
 package top.vuhe.database.entity
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy
+import com.baomidou.mybatisplus.annotation.TableField
+
 /**
  * 成绩实体
  *
@@ -14,5 +17,9 @@ data class Score(
     val stuNum: String,
     val cozNum: String,
     val score: Int,
+    @field:TableField(
+        insertStrategy = FieldStrategy.IGNORED,
+        updateStrategy = FieldStrategy.IGNORED
+    )
     val retestScore: Int?
 )

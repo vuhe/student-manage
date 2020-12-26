@@ -11,7 +11,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item>
-        <el-button @click="getData(1)">查询/刷新</el-button>
+        <el-button @click="reset">查询/刷新</el-button>
         <el-button v-if="isAdmin" type="warning" @click="addOrUpdateBtn = true">添加成绩</el-button>
       </el-form-item>
     </el-form>
@@ -84,7 +84,7 @@
       layout="total, prev, pager, next">
     </el-pagination>
 
-    <score-add-or-update :end-call="getData(1)"></score-add-or-update>
+    <score-add-or-update :end-call="reset"></score-add-or-update>
   </div>
 </template>
 
@@ -127,6 +127,10 @@ export default {
     addOrUpdateHandle (id) {
       this.currId = id
       this.addOrUpdateBtn = true
+    },
+    reset () {
+      this.currentPage = 1
+      this.getData(this.currentPage)
     },
     getData (page) {
       this.$http({

@@ -5,7 +5,7 @@
         <el-input placeholder="输入课程号查询" v-model="searchNum" clearable></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="getData(1)">查询/刷新</el-button>
+        <el-button @click="reset">查询/刷新</el-button>
         <el-button v-if="isAdmin" type="warning" @click="addOrUpdateBtn = true">添加课程</el-button>
       </el-form-item>
     </el-form>
@@ -71,7 +71,7 @@
       layout="total, prev, pager, next">
     </el-pagination>
 
-    <course-add-or-update :end-call="getData(1)"></course-add-or-update>
+    <course-add-or-update :end-call="reset"></course-add-or-update>
   </div>
 </template>
 
@@ -113,6 +113,10 @@ export default {
     addOrUpdateHandle (id) {
       this.currId = id
       this.addOrUpdateBtn = true
+    },
+    reset () {
+      this.currentPage = 1
+      this.getData(this.currentPage)
     },
     getData (page) {
       this.$http({

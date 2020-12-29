@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta base=/ />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!--以IE最高模式匹配-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>学生信息管理系统</title>
+  <link rel="shortcut icon" type="image/x-icon" href="./assert/img/favicon.ico">
+  <% if (process.env.NODE_ENV === 'production') { %>
+  <!-- 生产环境 -->
+  <script>document.write('<script src="./assert/config/index-prod.js?t=' + new Date().getTime() + '"><\/script>')</script>
+  <% }else { %>
+  <!-- 开发环境 -->
+  <script src="./assert/config/index-dev.js"></script>
+  <% } %>
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>

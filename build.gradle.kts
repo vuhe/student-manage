@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     // springboot 启动框架
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     // json 默认解析包
@@ -29,6 +28,29 @@ dependencies {
 
     // springboot 默认测试框架
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // 数据库配置
+    implementation("com.baomidou:mybatis-plus-boot-starter:3.4.1")
+    implementation("com.alibaba:druid-spring-boot-starter:1.2.4")
+    implementation("mysql:mysql-connector-java:8.0.22")
+    implementation("org.springframework:spring-jdbc:5.3.2")
+
+    // 权限控制
+    implementation("org.apache.shiro:shiro-spring:1.7.0")
+}
+
+val fatJar = task("fatJar", type = Jar::class) {
+    manifest {
+        attributes["Main-Class"] = "top.vuhe.database.DatabaseApplicationKt"
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    with(tasks.jar.get() as CopySpec)
+}
+
+tasks {
+    "build" {
+        dependsOn(fatJar)
+    }
 }
 
 tasks.withType<KotlinCompile> {

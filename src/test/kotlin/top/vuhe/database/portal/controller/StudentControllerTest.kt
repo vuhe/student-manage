@@ -1,5 +1,6 @@
 package top.vuhe.database.portal.controller
 
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,11 +14,13 @@ class StudentControllerTest {
     private lateinit var controller: StudentController
 
     @Test
+    @Disabled
     fun search() {
         println(toJson(controller.searchStudentPage("1",1)))
     }
 
     @Test
+    @Disabled
     fun add() {
         val stu1 = Student(1,
             "3",
@@ -27,6 +30,7 @@ class StudentControllerTest {
     }
 
     @Test
+    @Disabled
     fun delete() {
         println(toJson(controller.deleteStudent(3)))
     }
